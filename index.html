@@ -1,0 +1,30 @@
+<div id="video-player"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/flowplayer/flowplayer-3.2.13.min.js"></script>
+<script>
+
+    // Example for streaming live video
+
+    var link = ["https://",                                         // protocol
+                "login",                                            // should be using user's active_brand_subdomain
+                ".eagleeyenetworks.com/",                           // domain
+                "asset/play/video.flv?id=",                         // path
+                "xxxxxxxx",                                         // camera ESN
+                ";start_timestamp=stream_12345",                    // should have a unique stream id
+                ";end_timestamp=%2B300000;",                        // note that the + is URL escaped
+                "A=",                                               // pass in Auth_key if user is not logged-in
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"             // Auth_key
+                ].join();    
+
+    // set the link
+    $('#video-player').attr('href', link)
+
+    // start it up
+    api = flowplayer("video-player", "flowplayer/flowplayer-3.2.18.swf");
+
+    api.onLoad(function() {
+        $('#video-player').height($('#video-player').width() * (9/16))
+    });
+</script>
